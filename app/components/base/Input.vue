@@ -66,7 +66,7 @@ const handleNumberInput = (event: Event) => {
       :placeholder="placeholder"
       @input="handleInput"
       @keypress="props.type === 'number' && handleNumberInput($event)"
-      class="w-full px-4 py-2 border-1 border-secondary-content rounded-lg focus:outline-none"
+      class="w-full px-4 py-2 border border-secondary-content rounded-lg focus:outline-none"
     />
     <button
       v-if="props.type === 'password'"
