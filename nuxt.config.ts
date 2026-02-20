@@ -7,11 +7,12 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [
-      tailwindcss(),
-    ] as any,
+      // eslint-disable-next-line
+      tailwindcss() as any,
+    ],
   },
 
-  modules: ['nuxt-lucide-icons'],
+  modules: ['nuxt-lucide-icons', '@nuxt/eslint'],
   lucide: {
     namePrefix: 'Icon'
   }
