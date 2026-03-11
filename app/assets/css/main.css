@@ -9,7 +9,7 @@
     --color-accent-content: #084D49;
     --color-neutral: #F8FAFD;
     --color-neutral-content: #E4E4E7;
-    --color-base-100: #FFF
+    --color-base-100: #ffffff;
     --colore-base-200: #191E24;
     --color-base-300: #15191E;
     --color-base-content: #373646;
@@ -21,4 +21,6 @@
     --color-warning-content: #793205;
     --color-error: #FF627D;
     --color-error-content: #4D0218;
+
+    --shadow-top: 0 -10px 100px rgba(194, 194, 194, 0.2);
 }
