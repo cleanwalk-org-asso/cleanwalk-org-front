@@ -5,7 +5,7 @@
     --color-primary-content: #EDF1FE;
     --color-secondary: #E1F4F8;
     --color-secondary-content: #94A3B8;
-    --color-accent: #00D3BB;
+    --color-accent: #72BDA3;
     --color-accent-content: #084D49;
     --color-neutral: #F8FAFD;
     --color-neutral-content: #E4E4E7;
@@ -23,4 +23,19 @@
     --color-error-content: #4D0218;
 
     --shadow-top: 0 -10px 100px rgba(194, 194, 194, 0.2);
+
+
+    --font-sans: 'Catamaran', sans-serif;
+}
+
+
+.leaflet-control-attribution {
+  display: none;
+}
+.leaflet-control-zoom {
+  display: none;
+}
+
+:root {
+    @apply font-sans;
 }

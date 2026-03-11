@@ -8,8 +8,8 @@ const isActive = (name: string): boolean => {
 </script>
 
 <template>
-    <div>
-        <ul class="md:hidden fixed bottom-0 left-0 flex grow w-screen bg-base-100 shadow-top p-2 text-base-content">
+    <div class="z-500 fixed">
+        <ul class="lg:hidden fixed bottom-0 left-0 flex grow w-screen bg-base-100 shadow-top p-2 text-base-content">
             <li 
                 class="flex-1 rounded-lg"
                 :class="{'bg-primary text-primary-content' : isActive('index') }"
@@ -47,36 +47,42 @@ const isActive = (name: string): boolean => {
                 </NuxtLink>
             </li>
         </ul>
-        <div class="hidden md:flex fixed top-0 left-0 w-screen bg-primary text-primary-content items-center justify-between py-3 font-bold">
-            <div>Cleanwalk</div>
-            <ul class="flex">
-                <li :class="{'bg-base-100 text-base-content' : isActive('index')}">
-                    <NuxtLink class="px-10 py-3 rounded-lg" to="/">
+        <div class="fixed w-screen hidden lg:flex items-center justify-between px-8 py-4 bg-primary text-primary-content font-bold">
+            <NuxtLink to="/">
+                <img src="../assets/logo.svg" alt="logo cleanwalk.org">
+            </NuxtLink>
+            <ul class="flex items-center gap-3">
+                <li class="rounded-lg" :class="{'bg-base-100 text-base-content' : isActive('index')}">
+                    <NuxtLink class="block px-5 py-3" to="/">
                         Accueil
                     </NuxtLink>
                 </li>
-                <li :class="{'bg-base-100 text-base-content' : isActive('carte')}">
-                    <NuxtLink class="px-10 py-3 rounded-lg" to="/carte">
+                <li class="rounded-lg" :class="{'bg-base-100 text-base-content' : isActive('carte')}">
+                    <NuxtLink class="block px-5 py-3" to="/carte">
                         Carte
                     </NuxtLink>
                 </li>
-                <li :class="{'bg-base-100 text-base-content' : isActive('ajouter')}">
-                    <NuxtLink class="px-10 py-3 rounded-lg" to="/ajouter">
+                <li class="rounded-lg" :class="{'bg-base-100 text-base-content' : isActive('ajouter')}">
+                    <NuxtLink class="block px-5 py-3" to="/ajouter">
                         Ajouter cleanwalk
                     </NuxtLink>
                 </li>
-                <li :class="{'bg-base-100 text-base-content' : isActive('decouvrir')}">
-                    <NuxtLink class="px-10 py-3 rounded-lg" to="/decouvrir">
+                <li class="rounded-lg" :class="{'bg-base-100 text-base-content' : isActive('decouvrir')}">
+                    <NuxtLink class="block px-5 py-3" to="/decouvrir">
                         Découvrir
                     </NuxtLink>
                 </li>
-                <li :class="{'bg-base-100 text-base-content' : isActive('menu')}">
-                    <NuxtLink class="px-10 py-3 rounded-lg" to="/menu">
+                <li class="rounded-lg" :class="{'bg-base-100 text-base-content' : isActive('menu')}">
+                    <NuxtLink class="block px-5 py-3" to="/menu">
                         Menu
                     </NuxtLink>
                 </li>
             </ul>
-            <div>Mon Compte</div>
+
+            <div class="flex gap-8">
+                <NuxtLink to="/">Se connecter</NuxtLink>
+                <NuxtLink to="/">S'inscrire</NuxtLink>
+            </div>
         </div>
     </div>
 </template>

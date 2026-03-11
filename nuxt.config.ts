@@ -12,8 +12,22 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['nuxt-lucide-icons', '@nuxt/eslint'],
+  modules: [
+    'nuxt-lucide-icons',
+    '@nuxt/eslint',
+    '@nuxtjs/leaflet',
+    '@nuxt/fonts'
+  ],
   lucide: {
     namePrefix: 'Icon'
-  }
+  },
+  fonts: {
+  families: [
+    {
+      name: 'Catamaran',
+      provider: 'google',
+      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    }
+  ]
+}
 })

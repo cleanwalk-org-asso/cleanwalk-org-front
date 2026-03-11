@@ -5,6 +5,8 @@
 <template>
   <div>
     <Navbar />
-    <slot />
+    <div class="pb-8 lg:pt-20 lg:pb-0">
+      <slot />
+    </div>
   </div>
 </template>
