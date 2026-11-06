@@ -1,9 +1,13 @@
-import type { Map as LeafletMap } from 'leaflet'
+import type { InjectionKey, ShallowRef } from 'vue'
+import type { Map as MapLibreMap } from 'maplibre-gl'
 import type { Cleanwalk } from '@/interfaces/cleanwalkInterface'
+
+// Carte de MapView, transmise à ses marqueurs.
+export const mapInjectionKey: InjectionKey<ShallowRef<MapLibreMap | null>> = Symbol('map')
 
 export function useCleanwalkMap() {
   const cleanwalkStore = useCleanwalkStore()
-  const mapInstance = shallowRef<LeafletMap | null>(null)
+  const mapInstance = shallowRef<MapLibreMap | null>(null)
   const selectedCleanwalk = ref<Cleanwalk | null>(null)
   const searchInput = ref('')
 
@@ -17,7 +21,7 @@ export function useCleanwalkMap() {
     )
   })
 
-  const setMapEvents = (map: LeafletMap) => {
+  const setMapEvents = (map: MapLibreMap) => {
     mapInstance.value = map
   }
 
@@ -28,7 +32,7 @@ export function useCleanwalkMap() {
     }
   }
 
-  const isPointVisible = (lat: number, lng: number) => mapInstance.value?.getBounds().contains([lat, lng]) ?? false
+  const isPointVisible = (lat: number, lng: number) => mapInstance.value?.getBounds().contains([lng, lat]) ?? false
 
   const mapClick = () => {
     selectedCleanwalk.value = null

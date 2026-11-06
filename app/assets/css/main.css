@@ -111,16 +111,11 @@
     }
 }
 
-/* Éléments générés par Leaflet, inaccessibles avec des classes Tailwind. */
-.leaflet-control-attribution,
-.leaflet-control-zoom {
-    display: none;
-}
-
-.dark .leaflet-tile-pane {
+/* Éléments générés par MapLibre, inaccessibles avec des classes Tailwind. */
+.dark .maplibregl-canvas {
     filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
 }
 
-.dark .leaflet-container {
+.dark .maplibregl-map {
     background: var(--color-base-100);
 }

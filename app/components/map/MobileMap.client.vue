@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { PointExpression } from 'leaflet'
 import { getCleanwalkRouteParams } from '@/services/cleanwalkSlug'
 
 const CARD_CLOSED = -10
@@ -9,8 +8,8 @@ const { cleanwalksTab } = storeToRefs(useCleanwalkStore())
 const { mapInstance, filteredCleanwalks, selectedCleanwalk, searchInput, setMapEvents, setSelectedCleanwalk, isPointVisible, mapClick } =
   useCleanwalkMap()
 
-const zoom = ref(5)
-const center = ref<PointExpression>([47.866667, 2.333333])
+const zoom = ref(4)
+const center = ref<[number, number]>([47.866667, 2.333333])
 const showList = ref(false)
 const cardBottom = ref(CARD_CLOSED)
 
@@ -79,22 +78,19 @@ onUnmounted(onTouchEnd)
 <template>
   <div>
     <div class="mt-14.5 h-[calc(100dvh-7.375rem)]">
-      <LMap
+      <LazyMapView
         v-model:zoom="zoom"
         v-model:center="center"
-        :min-zoom="5"
-        :use-global-leaflet="false"
         @ready="setMapEvents"
         @click="onMapClick"
       >
-        <LTileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" />
-        <MapCleanwalkMarker
+        <LazyMapCleanwalkMarker
           v-for="cleanwalk in cleanwalksTab"
           :key="cleanwalk.id"
           :cleanwalk="cleanwalk"
           @select="openCard(cleanwalk.id)"
         />
-      </LMap>
+      </LazyMapView>
     </div>
 
     <SearchBar v-model="searchInput" v-model:active="showList">

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['nuxt-lucide-icons', '@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/fonts', '@pinia/nuxt', '@nuxtjs/color-mode'],
+  modules: ['nuxt-lucide-icons', '@nuxt/eslint', '@nuxt/fonts', '@pinia/nuxt', '@nuxtjs/color-mode'],
 
   lucide: {
     namePrefix: 'Icon',

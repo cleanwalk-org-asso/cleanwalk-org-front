@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { PointExpression } from 'leaflet'
 import type { Cleanwalk } from '@/interfaces/cleanwalkInterface'
 import { getCleanwalkRouteParams } from '@/services/cleanwalkSlug'
 
@@ -9,8 +8,11 @@ const { cleanwalksTab } = storeToRefs(useCleanwalkStore())
 const { mapInstance, filteredCleanwalks, searchInput, selectedCleanwalk, setMapEvents, setSelectedCleanwalk, mapClick } =
   useCleanwalkMap()
 
-const zoom = ref(6)
-const center = ref<PointExpression>([47.2, 0])
+const OVERVIEW_ZOOM = 5
+const CLEANWALK_ZOOM = 12
+
+const zoom = ref(OVERVIEW_ZOOM)
+const center = ref<[number, number]>([47.2, 0])
 
 // Une recherche qui ne donne qu'un résultat l'ouvre directement.
 watch(filteredCleanwalks, (cleanwalks) => {
@@ -25,19 +27,19 @@ watch(filteredCleanwalks, (cleanwalks) => {
 watch(selectedCleanwalk, (cleanwalk) => {
   if (cleanwalk && mapInstance.value) {
     center.value = [cleanwalk.pos_lat, cleanwalk.pos_long]
-    zoom.value = 13
+    zoom.value = CLEANWALK_ZOOM
   }
 })
 
 const resetSelection = () => {
   searchInput.value = ''
   selectedCleanwalk.value = null
-  zoom.value = 6
+  zoom.value = OVERVIEW_ZOOM
 }
 
 const onMapClick = () => {
   if (selectedCleanwalk.value) {
-    zoom.value = 6
+    zoom.value = OVERVIEW_ZOOM
   }
   mapClick()
 }
@@ -45,22 +47,19 @@ const onMapClick = () => {
 
 <template>
   <div class="h-[calc(100vh-5.5rem)] w-full">
-    <LMap
+    <LazyMapView
       v-model:zoom="zoom"
       v-model:center="center"
-      :min-zoom="5"
-      :use-global-leaflet="false"
       @ready="setMapEvents"
       @click="onMapClick"
     >
-      <LTileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" />
-      <MapCleanwalkMarker
+      <LazyMapCleanwalkMarker
         v-for="cleanwalk in cleanwalksTab"
         :key="cleanwalk.id"
         :cleanwalk="cleanwalk"
         @select="setSelectedCleanwalk(cleanwalk.id!)"
       />
-    </LMap>
+    </LazyMapView>
 
     <div class="fixed bottom-1/2 left-4 z-[999] flex h-[calc(100%-9rem)] w-120 translate-y-[calc(50%+2.75rem)] flex-col gap-4 rounded-lg bg-neutral p-4 shadow-[0_-10px_100px_rgba(194,194,194,0.2)]">
       <BaseSearchInput v-model="searchInput" name="search" placeholder="Rechercher une cleanwalk" />

@@ -44,7 +44,7 @@
         <span>Développé par nos bénévoles.</span>
         <span>
           Cartographie :
-          <a href="https://leafletjs.com" target="_blank" rel="noopener noreferrer">Leaflet</a>
+          <a href="https://maplibre.org" target="_blank" rel="noopener noreferrer">MapLibre</a>
           &amp;
           <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
         </span>
