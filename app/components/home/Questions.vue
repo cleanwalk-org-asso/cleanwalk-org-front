@@ -27,11 +27,11 @@ const faqs: FAQ[] = [
 
 <template>
     <div class="flex flex-col items-center">
-        <div class="questions-section p-8 max-w-5xl">
+        <div class="w-full max-w-5xl p-8">
             <h4 class="font-black text-2xl text-center">
                 Questions fréquentes
             </h4>
-            <div class="accordions-container pt-8">
+            <div class="flex flex-col gap-2 pt-8">
                 <BaseAccordion 
                     v-for="(faq, index) in faqs"
                     :key="index"
@@ -42,16 +42,3 @@ const faqs: FAQ[] = [
         </div>
     </div>
 </template>
-
-
-<style scoped>
-.questions-section {
-    width: 100%;
-}
-
-.accordions-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-</style>

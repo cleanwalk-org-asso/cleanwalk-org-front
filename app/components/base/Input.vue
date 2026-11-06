@@ -1,82 +1,53 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+const model = defineModel<string | number>()
 
-interface Props {
-  type?: 'text' | 'email' | 'password' | 'number'
-  placeholder?: string
-  modelValue?: string | number
-  label?: string
-}
-
-interface Emits {
-  (e: 'update:modelValue', value: string | number): void
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  placeholder: '',
-  modelValue: '',
-  label: '',
-})
-
-const emit = defineEmits<Emits>()
+const props = withDefaults(
+  defineProps<{
+    name: string
+    label?: string
+    type?: string
+    placeholder?: string
+    required?: boolean
+    autocomplete?: string
+    min?: string
+  }>(),
+  { label: '', type: 'text', placeholder: '', autocomplete: undefined, min: undefined },
+)
 
 const showPassword = ref(false)
-const inputValue = ref(props.modelValue)
-
-const computedType = computed(() => {
-  if (props.type === 'password' && showPassword.value) {
-    return 'text'
-  }
-  return props.type
-})
-
-const togglePasswordVisibility = () => {
-  showPassword.value = !showPassword.value
-}
-
-const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  let value: string | number = target.value
-
-  if (props.type === 'number') {
-    value = value === '' ? '' : parseFloat(value)
-  }
-
-  inputValue.value = value
-  emit('update:modelValue', value)
-}
-
-const handleNumberInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  // Permet seulement les chiffres et le point décimal
-  target.value = target.value.replace(/[^0-9.]/g, '')
-}
+const computedType = computed(() => (props.type === 'password' && showPassword.value ? 'text' : props.type))
 </script>
 
 <template>
-  <div class="flex flex-col gap-1 text-base-content relative pt-3">
-    <label v-if="label" class="text-sm font-medium text-secondary-content absolute top-0 left-4 bg-white z-10 px-2">
+  <div class="relative mt-2 flex w-full flex-col">
+    <label
+      v-if="label"
+      :for="name"
+      class="absolute -top-2.5 left-2.5 z-1 bg-base-100 px-1 text-xs font-medium text-secondary-content"
+    >
       {{ label }}
     </label>
-    <div class="relative">
     <input
-      class="w-full px-4 py-2 border border-secondary-content rounded-lg focus:outline-none"
+      :id="name"
+      v-model="model"
       :type="computedType"
-      :value="inputValue"
+      :name="name"
       :placeholder="placeholder"
-      @input="handleInput"
-      @keypress="props.type === 'number' && handleNumberInput($event)"
+      :required="required"
+      :autocomplete="autocomplete"
+      :min="min"
+      class="w-full rounded-lg border border-secondary-content bg-base-100 p-3 font-medium text-strong placeholder:text-secondary-content focus:outline-none"
+      :class="{ 'pr-11': type === 'password' }"
     >
     <button
-      v-if="props.type === 'password'"
+      v-if="type === 'password'"
       type="button"
-      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-      @click="togglePasswordVisibility"
+      class="absolute top-1/2 right-3 -translate-y-1/2 text-muted hover:text-base-content"
+      :aria-label="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+      @click="showPassword = !showPassword"
     >
       <IconEye v-if="showPassword" />
       <IconEyeOff v-else />
     </button>
-    </div>
   </div>
 </template>

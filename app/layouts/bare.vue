@@ -1,5 +1,5 @@
 <template>
   <div>
-    Découvrir
+    <slot />
   </div>
 </template>

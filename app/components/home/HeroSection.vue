@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import homeBannerUrl from '@/assets/home-banner.webp'
+import homeBannerUrl from '~/assets/home-banner.webp'
 </script>
 
 <template>
-    <section 
-        class="h-122.75 bg-cover bg-center flex justify-center items-center text-primary px-2"
-        :style="{ backgroundImage: `url(${homeBannerUrl})` }"
-    >
-        <h1 class="flex flex-col gap-4 mb-28 font-bold">
-            <div class=" text-3xl font-bold bg-secondary rounded-lg leading-9.5 py-2.5 px-2.5 w-fit bg-white/80 shadow-[0px_4px_5.3px_rgba(0,0,0,0.08)]">
-                La plateforme française
-            </div>
-            <div class="text-3xl font-bold bg-secondary rounded-lg leading-9.5 py-2.5 px-2.5 w-fit bg-white/80">
-                qui centralise les ramassages citoyens de déchets !
-            </div>
-        </h1>
-    </section>
+  <section
+    class="flex h-122.75 items-center justify-center bg-cover bg-center px-2 text-brand"
+    :style="{ backgroundImage: `url(${homeBannerUrl})` }"
+  >
+    <h1 class="mb-28 flex flex-col gap-4 font-bold">
+      <div class="w-fit rounded-lg bg-frosted p-2.5 text-3xl leading-9.5 font-bold shadow-[0_4px_5.3px_rgba(0,0,0,0.08)]">
+        La plateforme française
+      </div>
+      <div class="w-fit rounded-lg bg-frosted p-2.5 text-3xl leading-9.5 font-bold">
+        qui centralise les ramassages citoyens de déchets !
+      </div>
+    </h1>
+  </section>
 </template>
